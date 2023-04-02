@@ -4,6 +4,8 @@ https://challenges.aquaq.co.uk/
 
 > Stats based off of a random terminal run on an M1 Max, 32 GB, Ventura 3.12.1
 
+> Python 3.11
+
 ```
 [src.q_00]: Completed in     97.99µs
 [src.q_01]: Completed in     34.81µs
