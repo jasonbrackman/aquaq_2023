@@ -7,10 +7,12 @@ https://challenges.aquaq.co.uk/
 > Python 3.11
 
 ```
-[src.q_00]: Completed in     97.99µs
-[src.q_01]: Completed in     34.81µs
+[src.q_00]: Completed in     90.84µs
+[src.q_01]: Completed in     32.90µs
 [src.q_02]: Completed in    204.09µs
-[src.q_03]: Completed in    135.90µs
-[src.q_04]: Completed in 181959.87µs
-[src.q_05]: Completed in    124.93µs
+[src.q_03]: Completed in    131.13µs
+[src.q_04]: Completed in 180511.95µs
+[src.q_05]: Completed in    180.01µs
+[src.q_06]: Completed in  19594.91µs
+[src.q_07]: Completed in     93.94µs
 ```
