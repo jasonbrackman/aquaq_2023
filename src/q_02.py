@@ -43,7 +43,7 @@ def discard_process(items: List[str]) -> int:
 
 
 def run() -> None:
-    with open("./data/2_one_is_all_you_need.txt", "r") as handle:
+    with open("./data/02_one_is_all_you_need.txt", "r") as handle:
         items = handle.read().split()
     assert discard_process(items) == 321
 

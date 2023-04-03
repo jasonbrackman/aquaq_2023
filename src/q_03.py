@@ -74,7 +74,7 @@ def calculate_steps(island: Set[Vec2], moves: List[str], current: Vec2) -> int:
 def run() -> None:
     island = parse()
 
-    with open(r"./data/3_short_walks.txt", "r") as handle:
+    with open(r"./data/03_short_walks.txt", "r") as handle:
         steps = list(handle.read())
     assert calculate_steps(island, steps, (0, 2)) == 2543
 

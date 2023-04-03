@@ -73,7 +73,7 @@ class Die:
 
 
 def run() -> None:
-    with open("./data/5_snake_eyes.txt", "r") as handle:
+    with open("./data/05_snake_eyes.txt", "r") as handle:
         instructions = handle.read()
 
     d1 = Die(1, 2, 3)

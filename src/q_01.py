@@ -25,7 +25,7 @@ def convert(message: str) -> str:
 
 
 def run() -> None:
-    with open(r"./data/1_rose_by_any_other_name.txt", "r") as handle:
+    with open(r"./data/01_rose_by_any_other_name.txt", "r") as handle:
         t = handle.read()
     assert convert(t) == "d0000d"
 

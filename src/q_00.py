@@ -19,7 +19,7 @@ T9 = {
 
 def run() -> None:
     result = ""
-    with open("./data/0_num_pad.txt", "r") as handle:
+    with open("./data/00_num_pad.txt", "r") as handle:
         for line in handle.readlines():
             val, count = re.findall(NUM_PATTERN, line)
             result += T9[int(val)][int(count) - 1]
