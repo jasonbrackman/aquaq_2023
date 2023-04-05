@@ -1,6 +1,20 @@
 import time
 
-from src import q_00, q_01, q_02, q_03, q_04, q_05, q_06, q_07, q_08, q_09, q_10, q_11
+from src import (
+    q_00,
+    q_01,
+    q_02,
+    q_03,
+    q_04,
+    q_05,
+    q_06,
+    q_07,
+    q_08,
+    q_09,
+    q_10,
+    q_11,
+    q_12,
+)
 
 for challenge in [
     q_00,
@@ -15,6 +29,7 @@ for challenge in [
     q_09,
     q_10,
     q_11,
+    q_12,
 ]:
     start_time = time.time()
     getattr(challenge, "run")()
