@@ -31,14 +31,14 @@ this fiddy?
 import os
 from collections import defaultdict
 from queue import PriorityQueue
-from typing import Tuple, Dict, List
+from typing import Tuple, Dict, List, Optional
 
 Edges = Dict[Tuple[str, str], int]
 Nodes = Dict[str, List[str]]
 
 
-def bfs(nodes: Nodes, edges: Edges, start: str, goal: str):
-    q = PriorityQueue()
+def bfs(nodes: Nodes, edges: Edges, start: str, goal: str) -> Optional[int]:
+    q: PriorityQueue[Tuple[int, str]] = PriorityQueue()
     q.put((0, start))
     v = {
         start,

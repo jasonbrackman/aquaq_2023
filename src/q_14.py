@@ -29,20 +29,20 @@ class Card:
         self.grid = grid
         self.nums: Set[int] = set()
 
-    def horizontals(self):
+    def horizontals(self) -> bool:
         for row in self.grid:
             if all(col in self.nums for col in row):
                 return True
         return False
 
-    def verticals(self):
+    def verticals(self) -> bool:
         for index in range(len(self.grid)):
             transposed = [row[index] for row in self.grid]
             if all(col in self.nums for col in transposed):
                 return True
         return False
 
-    def diagonals(self):
+    def diagonals(self) -> bool:
         lr = [self.grid[i][i] for i in range(len(self.grid))]
         rl = [self.grid[i][j] for i, j in enumerate(range(len(self.grid) - 1, -1, -1))]
         if all(col in self.nums for col in lr):

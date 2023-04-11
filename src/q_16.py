@@ -53,6 +53,9 @@ import re
 import string
 from typing import List, Dict
 
+Block = List[str]
+Blocks = Dict[str, Block]
+
 DOTR_PATTERN = re.compile(r"\.+$")
 DOTL_PATTERN = re.compile(r"^\.+")
 
@@ -63,7 +66,7 @@ def get_instructions() -> str:
     return s.strip()
 
 
-def character_blocks() -> Dict[str, List[str]]:
+def character_blocks() -> Blocks:
     wh = 6
     with open(r"./data/16_ascii_letters.txt", "r") as handle:
         lines = [
@@ -85,11 +88,11 @@ def character_blocks() -> Dict[str, List[str]]:
     return dict(zip(string.ascii_uppercase, groups))
 
 
-def character_spaces(block: List[str]) -> int:
+def character_spaces(block: Block) -> int:
     return sum(row.count(".") for row in block)
 
 
-def calculate_space_removal(left, right) -> int:
+def calculate_space_removal(left: Block, right: Block) -> int:
     col_height = 6
     right_width = how_close(left, DOTR_PATTERN)
     left_width = how_close(right, DOTL_PATTERN)
@@ -110,9 +113,9 @@ def calculate_space_removal(left, right) -> int:
     return -col_height
 
 
-def how_close(x: List[str], pattern: re.Pattern):
+def how_close(block: Block, pattern: re.Pattern[str]) -> List[int]:
     result = []
-    for line in x:
+    for line in block:
         found = re.findall(pattern, line)
         if found:
             result.append(found[0].count("."))

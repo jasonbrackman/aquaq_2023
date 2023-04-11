@@ -79,16 +79,5 @@ def run() -> None:
     assert calculate_steps(island, steps, (0, 2)) == 2543
 
 
-def debug():
-    island = parse()
-    problems = [
-        (list("UDRR"), 14),
-        (list("UDRRR"), 19),
-    ]
-    for steps, expected in problems:
-        result = calculate_steps(island, steps, (0, 2))
-        assert result == expected
-
-
 if __name__ == "__main__":
     run()

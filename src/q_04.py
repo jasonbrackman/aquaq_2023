@@ -14,7 +14,6 @@ For example, the co-primes of 15 are
 If your input was 15, the answer would be 60.
 
 """
-import math
 from typing import Set
 
 
@@ -22,7 +21,7 @@ def find_factors(num: int) -> Set[int]:
     return {index for index in range(2, (num // 2) + 1) if num % index == 0}
 
 
-def is_intersecting(index, x):
+def is_intersecting(index: int, x: Set[int]) -> bool:
     for item in x:
         if item <= index and index % item == 0:
             return True

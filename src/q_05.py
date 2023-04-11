@@ -35,9 +35,8 @@ faces match? For the example above the answer would be 5, since the dice show a 
 1 and instruction 4.
 """
 import os
-from typing import Literal
 
-Side = Literal[1, 2, 3, 4, 5, 6]
+Side = int
 
 
 class Die:
@@ -48,27 +47,27 @@ class Die:
         self.left = left
         self.top = top
 
-    def turn_left(self):
+    def turn_left(self) -> None:
         r_old = Die.MAGIC_OPPOSITE - self.left
         self.left = self.front
         self.front = r_old
 
-    def turn_right(self):
+    def turn_right(self) -> None:
         b_old = Die.MAGIC_OPPOSITE - self.front
         self.front = self.left
         self.left = b_old
 
-    def turn_up(self):
+    def turn_up(self) -> None:
         d_old = Die.MAGIC_OPPOSITE - self.top
         self.top = self.front
         self.front = d_old
 
-    def turn_down(self):
+    def turn_down(self) -> None:
         b_old = Die.MAGIC_OPPOSITE - self.front
         self.front = self.top
         self.top = b_old
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Die({self.front=}, {self.left=}, {self.top=})"
 
 

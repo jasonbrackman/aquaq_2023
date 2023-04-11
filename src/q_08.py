@@ -32,24 +32,24 @@ while cereal has steadily reduced to 500g.
 It's currently one day after the last date in your input - what's the sum of your remaining milk and cereal?
 """
 import os
-from typing import Dict
+from typing import Dict, Iterator, Tuple
 
 
 class Milk:
-    def __init__(self):
+    def __init__(self) -> None:
         self.storage: Dict[int, int] = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
 
-    def next_day(self):
+    def next_day(self) -> None:
         self.storage[5] = self.storage[4]
         self.storage[4] = self.storage[3]
         self.storage[3] = self.storage[2]
         self.storage[2] = self.storage[1]
         self.storage[1] = 0
 
-    def add(self, amount):
+    def add(self, amount: int) -> None:
         self.storage[1] += amount
 
-    def use(self):
+    def use(self) -> bool:
         for i in range(5, 0, -1):
             if self.storage[i] >= 100:
                 self.storage[i] -= 100
@@ -58,7 +58,7 @@ class Milk:
 
 
 class Routine:
-    def __init__(self):
+    def __init__(self) -> None:
         self.milk = Milk()
         self.cereal = 0  # g
 
@@ -68,12 +68,12 @@ class Routine:
     def purchase_milk(self, amount: int) -> None:
         self.milk.add(amount)
 
-    def consume(self):
+    def consume(self) -> None:
         if self.cereal >= 100 and self.milk.use():
             self.cereal -= 100
 
 
-def parse():
+def parse() -> Iterator[Tuple[int, int]]:
     with open(r"./data/08_cron_flakes.txt", "r") as handle:
         lines = iter(handle.readlines())
     _header = next(lines)

@@ -26,7 +26,7 @@ import math
 import os
 import string
 from collections import deque
-from typing import List, Tuple, Set
+from typing import List, Tuple, Set, Optional
 
 
 def get_word_games() -> List[Tuple[str, ...]]:
@@ -41,7 +41,7 @@ def get_word_set() -> Set[str]:
     return word_set
 
 
-def bfs(start: str, end: str, words: Set[str]):
+def bfs(start: str, end: str, words: Set[str]) -> Optional[int]:
     visited = set()
     queue = deque([(start, 1)])
     while queue:
@@ -67,6 +67,7 @@ def run() -> None:
     scores = []
     for a, b in word_games:
         depth = bfs(a.strip(), b.strip(), word_list)
+        assert depth is not None  # Unexpected
         scores.append(depth)
     assert math.prod(scores) == 97920000
 

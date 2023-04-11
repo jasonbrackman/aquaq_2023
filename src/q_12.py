@@ -27,7 +27,7 @@ from typing import Dict, Tuple
 
 def parse() -> Dict[int, Tuple[int, int]]:
     instructions = dict()
-    with open(r'./data/12_day_in_the_left.txt', 'r') as handle:
+    with open(r"./data/12_day_in_the_left.txt", "r") as handle:
         for index, line in enumerate(handle.readlines()):
             a, b = line.strip().split()
             instructions[index] = int(a), int(b)
@@ -40,11 +40,12 @@ def run() -> None:
     add = "__add__"
     switch = add
 
-    visited = [0, ]
+    visited = [
+        0,
+    ]
     current = 0
     while current in instructions:
-        # visited.append(current)
-        instruction, move  = instructions[current]
+        instruction, move = instructions[current]
 
         if instruction == 0:
             if switch == add:
@@ -58,5 +59,5 @@ def run() -> None:
 
 
 if __name__ == "__main__":
-    os.chdir('..')
+    os.chdir("..")
     run()

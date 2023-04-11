@@ -43,8 +43,7 @@ def iter_parse() -> Points:
     points = []
     for line in lines:
         x1, y1, x2, y2 = line.strip().split(",")
-        x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-        points.append((x1, y1, x2, y2))
+        points.append((int(x1), int(y1), int(x2), int(y2)))
 
     return points
 

@@ -40,8 +40,8 @@ from typing import Dict
 
 
 class Elo:
-    def __init__(self):
-        self.score = 1200
+    def __init__(self) -> None:
+        self.score = 1200.0
         self.constant = 20
 
     def expected_result(self, other: Elo) -> float:
@@ -65,7 +65,7 @@ def run() -> None:
     # keep track of the teams and their Elo
     teams: Dict[str, Elo] = dict()
     for line in lines:
-        home, away, scores = line.strip().split(",")
+        home, away, original_scores = line.strip().split(",")
         # Add teams if missing
         if home not in teams:
             teams[home] = Elo()
@@ -73,7 +73,7 @@ def run() -> None:
             teams[away] = Elo()
 
         # Calculate who won
-        scores = [int(s) for s in scores.split("-")]
+        scores = [int(s) for s in original_scores.split("-")]
         winner = home if scores[0] > scores[1] else away
         # distribute score
         if winner == home:
