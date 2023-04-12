@@ -18,8 +18,10 @@ from src import (
     q_15,
     q_16,
     q_17,
+    q_18,
 )
 
+cumulative_time = 0.0
 for challenge in [
     q_00,
     q_01,
@@ -38,6 +40,7 @@ for challenge in [
     q_15,
     q_16,
     q_17,
+    q_18,
 ]:
     start_time = time.time()
     getattr(challenge, "run")()
@@ -47,3 +50,8 @@ for challenge in [
     print(
         f"[{challenge.__name__}]: Completed in {microseconds:9.2f}{microsecond_symbol}s"
     )
+    cumulative_time += microseconds
+
+print(
+    f"Cumulative Time for all puzzles: {round(cumulative_time / 1_000_000, 2)} seconds."
+)
