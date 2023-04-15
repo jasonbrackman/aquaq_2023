@@ -65,7 +65,6 @@ For this input, the answer is 8.
 What is the sum of the living cells after the required run time for each input?
 """
 import os
-import sys
 from typing import List, Tuple, Dict, Set
 
 Vec2 = Tuple[int, int]
@@ -88,10 +87,23 @@ class Automata:
         If a cell has an odd number of surrounding "on" states, it should be set to (or remain) on.
         Points outside the boundary are considered to be "off".
         """
-
+        low = None
+        high = -1
         for index in range(self.run_time):
             temp = tuple(self.values)
             if temp in self.cache:
+                t_keys = [k for k in self.cache.keys()]
+                t = t_keys.index(temp)
+                if low is None:
+                    low = t
+                else:
+                    if t > high:
+                        high = t
+                    else:
+                        r = (self.run_time - index - 1) % (len(self.cache) - low)
+                        new_key = t_keys[low:][r]
+                        return len(self.cache[new_key])
+
                 self.values = self.cache[temp]
             else:
                 self.values = self.get_new_positions()
