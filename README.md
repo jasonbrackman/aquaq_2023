@@ -27,4 +27,5 @@ https://challenges.aquaq.co.uk/
 [src.q_17]: Completed in    53232.67µs
 [src.q_18]: Completed in   802963.97µs
 [src.q_19]: Completed in 31207959.89µs
+[src.q_20]: Completed in     2470.97µs
 ```
