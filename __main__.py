@@ -25,6 +25,7 @@ from src import (
     q_22,
     q_23,
     q_24,
+    q_25,
 )
 
 cumulative_time = 0.0
@@ -53,6 +54,7 @@ for challenge in [
     q_22,
     q_23,
     q_24,
+    q_25,
 ]:
     start_time = time.time()
     getattr(challenge, "run")()
