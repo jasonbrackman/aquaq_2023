@@ -28,6 +28,7 @@ from src import (
     q_25,
     q_26,
     q_27,
+    q_28,
 )
 
 cumulative_time = 0.0
@@ -59,6 +60,7 @@ for challenge in [
     q_25,
     q_26,
     q_27,
+    q_28,
 ]:
     start_time = time.time()
     getattr(challenge, "run")()
@@ -66,7 +68,7 @@ for challenge in [
     microsecond_symbol = "\u00b5"
     microseconds = (end_time - start_time) * 1_000_000
     print(
-        f"[{challenge.__name__}]: Completed in {microseconds:9.2f}{microsecond_symbol}s"
+        f"[{challenge.__name__}]: Completed in {microseconds:13.2f}{microsecond_symbol}s"
     )
     cumulative_time += microseconds
 
