@@ -41,12 +41,15 @@ For a total of 5 valid starting positions for the set.
 Treating your input as a set of dealt hands, work out how many valid starting positions are in that set.
 """
 import os
+import re
 import sys
 from functools import cache
 from typing import List
 
+pattern = r"0*(1+)0*"
+
 # set the new recursion depth limit
-sys.setrecursionlimit(5000)  # set to the desired limit
+sys.setrecursionlimit(3000)  # set to the desired limit
 
 
 def parse() -> List[str]:
@@ -57,18 +60,20 @@ def parse() -> List[str]:
 
 @cache
 def can_flip(val: str) -> int:
-    # base cases
-    if len(set(val)) == 1 and "." in set(val):
+    if "1" == val:
         return 1
-    if "1" not in val and "0" in val:
+    if "1" not in val:
         return 0
-
+    items = re.findall(pattern, val)
+    if len(items) == 1 and len(items[0]) <= 2:
+        return 0 if len(items[0]) % 2 == 0 else 1
     t = 0
-    for index in range(len(val)):
+    for index, c in enumerate(val):
         r = 0
-        if val[index] == "1":
+        if c == "1":
             s = list(val)
             s[index] = "."
+
             if index - 1 >= 0:
                 current = s[index - 1]
                 if current == "1":
@@ -82,8 +87,10 @@ def can_flip(val: str) -> int:
                     s[index + 1] = "0"
                 elif current == "0":
                     s[index + 1] = "1"
-            r += all(can_flip(t) for t in "".join(s).split(".") if t)  # very slow for the last 8 numbers :(
-        if r > 0:
+
+            # very slow for the last 8 numbers :(
+            r = all(can_flip(t) for t in "".join(s).split(".") if t)
+        if r:
             t += 1
 
     return t
@@ -92,9 +99,13 @@ def can_flip(val: str) -> int:
 def run() -> None:
     lines = parse()
     t = 0
-    for line in lines:
+    for index, line in enumerate(lines):
+        for _ in range(7):
+            # first optimization is to remove repeating zeroes.
+            line = line.replace("00", "0")
         t += can_flip(line)
-    assert t == 8069
+        # print(index, t)
+    assert t == 8069, t
 
 
 if __name__ == "__main__":
