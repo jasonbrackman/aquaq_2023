@@ -18,8 +18,8 @@ amount of points the winner gains and the loser loses. For example, if Ra is 140
 a has an expected win rate of around 0.75 over b, and if a wins, Ra gains, and Rb loses, about 5
 points each. Conversely, if b wins, b gains and a loses 15 points.
 
-This dependency on the point ratings ensures that an expected result doesn't change points
-distribution too much, but an unexpected result causes a larger points swing.
+This dependency on the point ratings ensures that an expected results doesn't change points
+distribution too much, but an unexpected results causes a larger points swing.
 
 To answer this challenge, take the input csv of table tennis games, and find the difference between
 the best and worst Elo in the final standings. You'll need to work out who won in each game and

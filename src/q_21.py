@@ -1,17 +1,20 @@
 """
-It's late in the day, and you've just finished a rousing session of AquaQ challenges. Looking at the clock,
-you realise it's exactly one minute until your spouse gets home, and you promised them you would vacuum the
-floor, which is currently covered in the debris of a week-long problem-solving session.
+It's late in the day, and you've just finished a rousing session of AquaQ challenges.
+Looking at the clock, you realise it's exactly one minute until your spouse gets home,
+and you promised them you would vacuum the floor, which is currently covered in the
+debris of a week-long problem-solving session.
 
-You note the hallway floor is covered in a grid of square tiles, and is 20 tiles wide and 500 long. Each
-tile is covered in a certain amount of dust motes. Quickly you estimate this coverage as relative integers,
-and note them as your input. Your vacuum cleaner attachment is 5 tiles wide, and for an effective cleaning
-action, you have to run it so it exactly covers whole tiles. You have time for exactly one pass down the
-hallway, and can move your vacuum cleaner left or right one tile at a time, or continue straight, as you
-move forward one tile at a time.
+You note the hallway floor is covered in a grid of square tiles, and is 20 tiles wide
+and 500 long. Each tile is covered in a certain amount of dust motes. Quickly you
+estimate this coverage as relative integers, and note them as your input. Your vacuum
+cleaner attachment is 5 tiles wide, and for an effective cleaning action, you have to
+run it, so it exactly covers whole tiles. You have time for exactly one pass down the
+hallway, and can move your vacuum cleaner left or right one tile at a time, or continue
+straight, as you move forward one tile at a time.
 
-In your single pass down the hallway, starting from any tile on the first row and moving the whole way down,
-how many motes of dust can you collect, assuming you clean all the dust from each tile?
+In your single pass down the hallway, starting from any tile on the first row and moving
+the whole way down, how many motes of dust can you collect, assuming you clean all the
+dust from each tile?
 
 For an example hallway, with a cleaner width of 3 tiles:
 3 4 5 1 3
@@ -34,6 +37,7 @@ from typing import List, Tuple, Iterator
 WIDTH = 5
 ROW_COUNT = 20
 
+
 def parse() -> List[List[int]]:
     with open(r"./data/21_clean_sweep.txt", "r") as f:
         rows = [[int(r) for r in line.split()] for line in f.readlines()]
@@ -47,21 +51,22 @@ def parse() -> List[List[int]]:
                 if len(row[i : i + WIDTH]) == WIDTH
             ]
         )
-
     return windows
 
 
 def _get_neighbours(
     cost: int, index: int, data: List[int]
 ) -> Iterator[Tuple[int, int]]:
+    data_len = len(data)
     for item in (index - 1, index, index + 1):
-        if 0 <= item < len(data):
+        if 0 <= item < data_len:
             yield cost - data[item], item
 
 
 def bfs() -> int:
     lowest = 0
     rows = parse()
+    max_rows = len(rows) - 1
     pq: PriorityQueue[Tuple[int, int, int]] = PriorityQueue()
     for index, cost in enumerate(rows[0]):
         pq.put((cost * -1, 0, index))
@@ -70,11 +75,12 @@ def bfs() -> int:
         cost, row, index = pq.get()
 
         if (
-            cost - (len(rows) - 1 - row) * 336  # 336 avg of the max value possible per row
+            cost - (max_rows - row) * 336  # 336 avg of the max value possible per row
         ) > lowest:
+
             continue
 
-        if row >= len(rows) - 1:
+        if row >= max_rows:
             if cost < lowest:
                 lowest = cost
 
