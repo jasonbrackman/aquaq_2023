@@ -89,6 +89,7 @@ a handy list of words here, which will contain the code word. What is the code w
 to encrypt the text in your input?
 
 """
+import os
 import string
 from typing import List
 
@@ -172,15 +173,15 @@ def score_text(message: str, words: List[str]) -> int:
     return sum([word in message for word in words])
 
 def run() -> None:
-    encryption_test()
+    # encryption_test()
 
-    with open('../data/35_problem_input.txt', 'r') as f:
+    with open('./data/35_problem_input.txt', 'r') as f:
         problem = f.read()
         problem = problem[:-1]
 
-    with open('../data/35_word_list.txt', 'r') as f:
+    with open('./data/35_word_list.txt', 'r') as f:
         keys = [key.strip() for key in f.readlines()]
-    with open('../data/35_word_score.txt', 'r') as f:
+    with open('./data/35_word_score.txt', 'r') as f:
         words = [w.strip() for w in f.readlines()]
 
     problem_len = len(problem)
@@ -199,4 +200,5 @@ def run() -> None:
 
 
 if __name__ == "__main__":
+    os.chdir('..')
     run()
