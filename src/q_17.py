@@ -75,7 +75,7 @@ class Team:
 
 
 def parse() -> Iterable[str]:
-    with open("./data/17_the_beautiful_shame.txt", "r") as handle:
+    with open("./data/17_the_beautiful_shame.txt", "r", encoding='utf8', ) as handle:
         items = iter(handle.readlines())
     next(items)  # throw away header
     return items
